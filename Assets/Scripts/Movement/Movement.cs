@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Movement : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Movement : MonoBehaviour
 
     public float jumpForce = 3f;
 
+    public Canvas inventoryCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,12 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (inventoryCanvas.enabled)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
             || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -70,6 +79,7 @@ public class Movement : MonoBehaviour
     }
     void Move(float horizontalInput, float verticalInput, float speed)
     {
+        
         rb.AddForce(Vector3.forward * verticalInput * speed, ForceMode.Impulse);
         rb.AddForce(Vector3.right * horizontalInput * speed, ForceMode.Impulse);
     }

@@ -41,14 +41,14 @@ public class MouseByMovement : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            while(transform.position.x != hit.point.x 
+            while (transform.position.x != hit.point.x
                 && transform.position.z != hit.point.z)
             {
                 Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
 
-                transform.position = Vector3.MoveTowards(transform.position,targetPosition, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
                 yield return null;
             }
         }
