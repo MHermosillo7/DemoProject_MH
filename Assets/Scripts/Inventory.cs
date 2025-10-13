@@ -18,6 +18,11 @@ public class Inventory : MonoBehaviour
 
     public void SetItemDescription(Image image)
     {
+        if(image == weaponImage)
+        {
+            itemDescription.text = weapon.GetComponent<Collectible>().description;
+            return;
+        }
         for (int i = 0; i < inventory.Count; i++)
         {
             Collectible itemData = inventory[i].GetComponent<Collectible>();
