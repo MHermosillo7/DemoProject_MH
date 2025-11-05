@@ -19,7 +19,15 @@ public class Health : MonoBehaviour
 
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            if (gameObject.CompareTag("Player"))
+            {
+                GameManager.LoadScene(0);
+            }
+            else
+            {
+                EnemyCounter.EnemyDestroyed();
+                Destroy(gameObject);
+            }
         }
     }
 }
