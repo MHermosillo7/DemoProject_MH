@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    Camera viewpoint;
-
-    Vector3 mousePositionStart = new Vector3();
-    Vector3 mousePositionEnd = new Vector3();
-
+    public Transform player;
     public float speed = 2;
     // Start is called before the first frame update
     void Awake()
     {
-        viewpoint = GetComponent<Camera>();
+        
     }
 
     // Update is called once per frame
@@ -23,6 +20,6 @@ public class CameraMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Mouse X");
         float verticalInput = Input.GetAxis("Mouse Y");
 
-        transform.Rotate(Vector3.up, (horizontalInput + verticalInput) * speed * Time.deltaTime, Space.World);
+        transform.RotateAround(player.position, Vector3.up, (horizontalInput + verticalInput) * speed * Time.deltaTime);
     }
 }
